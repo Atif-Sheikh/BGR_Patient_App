@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "GBR 2020",
+    "slug": "GBR",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/gbg.png",
+    "splash": {
+      "image": "./assets/gbg.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.netismsoft.GBR",
+      "versionCode": 1,
+      "permissions": [
+        ""
+      ]
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.netismsoft.GBR",
+      "buildNumber": "1.0.0"
+    },
+    "description": "UPDATE-29"
+  }
+}

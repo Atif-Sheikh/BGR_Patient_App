@@ -1,0 +1,11 @@
+Keystore credentials
+  Keystore password: 8ff71867864548deac76230934c877fc
+  Key alias:         QHVkYXlhcmFqYV91dnI0L0dCUg==
+  Key password:      5e0733b9e1fe4b1aaa89ab8a3551c06e
+
+  Path to Keystore:  C:\Users\user\GBR\GBR.jks
+
+
+
+
+expo fetch:android:keystore
