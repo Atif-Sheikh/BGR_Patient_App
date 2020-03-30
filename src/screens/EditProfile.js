@@ -25,18 +25,11 @@ const EditProfile = ({ navigation }) => {
     return (
   
         <ImageBackground source={require('../../assets/blo.png')} style={{ height: "100%", width: "100%" }}>
-                     <ScrollView>
+                     
       
                 <View style={styles.container}>
                   
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Edit Name"
-                            keyboardType={"default"}
-                            placeholderTextColor="#424242"
-                            autoCorrect={false}
-                            clearTextOnFocus={true}
-                        />
+                     
                         <TextInput
                             require
                             style={styles.input}
@@ -48,23 +41,7 @@ const EditProfile = ({ navigation }) => {
                             clearTextOnFocus={true}
                             editable = {false}
                         />
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Enter Email Id"
-                            keyboardType={"default"}
-                            placeholderTextColor="#424242"
-                            autoCorrect={false}
-                            clearTextOnFocus={true}
-                        />
-                        <TextInput
-                            require
-                            style={styles.input}
-                            placeholder="Enter Your Age"
-                            keyboardType={"decimal-pad"}
-                            placeholderTextColor="#424242"
-                            autoCorrect={false}
-                            clearTextOnFocus={true}
-                        />
+                      
                         <TextInput
                             style={styles.input}
                             placeholder="Change Password"
@@ -83,6 +60,20 @@ const EditProfile = ({ navigation }) => {
                             clearTextOnFocus={true}
                             secureTextEntry={true}
                         />
+
+                        
+                              <View style={{ alignItems : "center" ,margin :10, flexDirection : "row" , justifyContent : "space-evenly"}}>
+                                        <TouchableOpacity 
+                                         style={{ width: "100%", color : "#fff",backgroundColor : "orange",borderRadius: 20 }}
+                                         onPress={onUpdate} ><View ><Text style = {{fontSize : 20, marginHorizontal :15}}> Edit </Text></View> 
+                                         </TouchableOpacity>
+
+                                        <TouchableOpacity 
+                                         style={{ width:"100%", color : "white",backgroundColor : "orange",borderRadius: 20 }}
+                                         onPress={() => navigation.navigate('Home')} ><View ><Text style = {{fontSize : 20}}> Submit </Text></View>
+                                        </TouchableOpacity>
+                                        
+                                    </View>
                   
 
                         <Text style={{ fontSize: 20, fontWeight: "bold" , marginTop : 5 }}>
@@ -125,20 +116,20 @@ const EditProfile = ({ navigation }) => {
                         <RadioButton />
 
 
-                                    <View style={{ alignItems : "center"  }}>
+                                    <View style={{ alignItems : "center" ,marginHorizontal :10, flexDirection : "row" , justifyContent : "space-evenly"}}>
                                         <TouchableOpacity 
-                                         style={{ width: "70%", marginRight: 10 , color : "#fff",backgroundColor : "orange",borderRadius: 20,marginBottom:10 }}
-                                         onPress={onUpdate} ><View><Text style = {{fontSize : 20}}> Update </Text></View> 
+                                         style={{ width: "100%", color : "#fff",backgroundColor : "orange",borderRadius: 20 }}
+                                         onPress={onUpdate} ><View ><Text style = {{fontSize : 20, marginHorizontal :15}}> Edit </Text></View> 
                                          </TouchableOpacity>
 
                                         <TouchableOpacity 
-                                         style={{ width:"70%", marginRight: 10 , color : "white",backgroundColor : "orange",borderRadius: 20 }}
-                                         onPress={() => navigation.navigate('Home')} ><View><Text style = {{fontSize : 20}}> Submit </Text></View>
+                                         style={{ width:"100%", color : "white",backgroundColor : "orange",borderRadius: 20 }}
+                                         onPress={() => navigation.navigate('Home')} ><View ><Text style = {{fontSize : 20}}> Submit </Text></View>
                                         </TouchableOpacity>
                                         
                                     </View>
             </View>
-            </ScrollView>
+         
 
         </ImageBackground>
           
@@ -155,7 +146,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 300,
-        height: "6%",
+        height: "7%",
         borderColor: 'gray',
         borderWidth: 2,
         borderRadius: 10,
