@@ -3,19 +3,19 @@ import { View,Text } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
 export default class MyComponent extends React.Component {
-  state = {
-    checked: 'Male',
-  };
+  // state = {
+  //   checked: 'Male',
+  // };
 
   render() {
-    const { checked } = this.state;
+    const { checked, changeGender } = this.props;
 
     return (
       <View style = {{flexDirection : "row"}}>
         <RadioButton
           value="Male"
           status={checked === 'Male' ? 'checked' : 'unchecked'}
-          onPress={() => { this.setState({ checked: 'Male' }); }}
+          onPress={() => { changeGender('Male'); }}
         />
         <View>
             <Text style = {{fontSize : 18 , marginTop : 5}}>Male</Text>
@@ -24,7 +24,7 @@ export default class MyComponent extends React.Component {
         <RadioButton
           value="Female"
           status={checked === 'Female' ? 'checked' : 'unchecked'}
-          onPress={() => { this.setState({ checked: 'Female' }); }}
+          onPress={() => { changeGender('Female'); }}
         />
          <View>
             <Text style = {{fontSize : 18,marginTop : 5}}>Female</Text>
