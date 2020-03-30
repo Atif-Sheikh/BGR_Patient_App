@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground,Image, TextInput, KeyboardAvoidingView, TouchableOpacity, Alert, Picker , Platform } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground,Image, TextInput, KeyboardAvoidingView, TouchableOpacity, Alert, Picker , Platform, AsyncStorage } from 'react-native';
 // import RadioButton from '../component/RadioButton';
 import { RadioButton } from 'react-native-paper';
 
@@ -94,7 +94,10 @@ fetch('http://gbr.thehoststudio.in/gbr/gbrreg.php', {
   })
 
 }).then((response) => response.json())
-      .then((responseJson) => {
+      .then(async (responseJson) => {
+
+        await AsyncStorage.setItem("userName", name);
+        await AsyncStorage.setItem("user_number", number);
 
 // Showing response message coming from server after inserting records.
         Alert.alert(responseJson);

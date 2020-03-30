@@ -6,7 +6,9 @@ import {
   Picker,
   ImageBackground,
   ScrollView,
-  FlatList
+  FlatList,
+  Alert,
+  AsyncStorage
 } from "react-native";
 import { Card, Button } from "native-base";
 import { RadioButton, TextInput } from "react-native-paper";
@@ -44,9 +46,80 @@ export default class Appointment extends Component {
       times: []
     };
   }
-  onSubmit() {
-    this.setState({ book: "true" });
-    this.setState({ names: "", number: "" });
+
+  oldPatientSubmit = async () => {
+    const { firstLanguage, secondLanguage, time, number, names } = this.state;
+
+    if(firstLanguage && secondLanguage && time) {
+
+      this.setState({ book: "true" }, () => {
+        fetch('http://gbr.thehoststudio.in/gbr/appointment.php', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+              "apt_name": names,
+              "apt_phone": number || "",
+              "apt_loc": firstLanguage,
+              "apt_date": secondLanguage,
+              "apt_time": time,
+              "apt_user":"0"
+             })
+          }).then((response) => {
+            Alert.alert("Successfully Added");
+            console.log(JSON.stringify({ 
+              "apt_name": names,
+              "apt_phone": number || "",
+              "apt_loc": firstLanguage,
+              "apt_date": secondLanguage,
+              "apt_time": time,
+              "apt_user":"0"
+             }), "CHECKKRO")
+            // return response.json();
+          }).then((date) => {
+            // this.setState({ dates: date });
+          })
+      });
+
+    }else {
+      Alert.alert("Please enter the form");
+    }
+  }
+
+  onSubmit = async () => {
+
+    const { firstLanguage, secondLanguage, time, names, number } = this.state;
+
+    if(firstLanguage && secondLanguage && time && names && number) {
+
+      this.setState({ book: "true" }, () => {
+        fetch('http://gbr.thehoststudio.in/gbr/appointment.php', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+              "apt_name": names,
+              "apt_phone": number,
+              "apt_loc": firstLanguage,
+              "apt_date": secondLanguage,
+              "apt_time": time,
+              "apt_user":"1"
+             })
+          }).then((response) => {
+            Alert.alert("Successfully Added");
+            console.log(JSON.stringify(response), "RESP")
+            // return response.json();
+          }).then((date) => {
+            // this.setState({ dates: date });
+          })
+      });
+
+    }else {
+      Alert.alert("Please enter the form");
+    }
+    
   }
 
   onReset() {
@@ -127,6 +200,20 @@ export default class Appointment extends Component {
     console.warn("Second Warning!");
     console.disableYellowBox = true;
     this.responseList();
+
+    this.getUserData();
+  }
+
+  getUserData = async () => {
+    try {
+      
+      let number = await AsyncStorage.getItem('user_number');
+      let name = await AsyncStorage.getItem("userName");
+      this.setState({ names: name, number: number });
+
+    }catch(err) {
+      console.log(JSON.stringify(err), "ERR");
+    }
   }
 
   showUser() {
@@ -268,7 +355,7 @@ export default class Appointment extends Component {
                 block
                 rounded
                 style={{ margin: 15, width: 100 }}
-                onPress={() => this.onSubmit()}
+                onPress={() => this.state.check === "Old Patient" ? this.oldPatientSubmit() : this.onSubmit()}
               >
                 <Text style={{ color: "#fff" }}>Confirm</Text>
               </Button>

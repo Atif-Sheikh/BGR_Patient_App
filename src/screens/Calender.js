@@ -90,24 +90,35 @@
 
 import React from 'react';
 import { WebView } from 'react-native-webview';
+import { AsyncStorage } from 'react-native';
 
 // const ref = React.createRef();
- const Periodtracker= () => {
+ class Periodtracker extends React.Component {
+    
+    componentDidMount(){
+        this.getDataFromStorage();
+    }; 
 
-    return (
-        // <WebView
-        // ref={ref => (myWebView = ref)}
-        // source={{ uri: "url" }}
-        // onLoadEnd={() => myWebView.postMessage("test")}
-        // />
-            <WebView
-        //     ref = "myWebView"
-     
-             source={{ uri: 'http://gbr.thehoststudio.in/gbr/period_tracker.php' }}
-        //       onLoadEnd={() => myWebView.postMessage("test") }
-        />
-    );
-  
+    getDataFromStorage = async () => {
+        let number = await AsyncStorage.getItem("user_number");
+        this.input.postMessage(number)
+    };
+    
+    render() {
+         return (
+             // <WebView
+             // ref={ref => (myWebView = ref)}
+             // source={{ uri: "url" }}
+             // onLoadEnd={() => myWebView.postMessage("test")}
+             // />
+                 <WebView
+             //     ref = "myWebView"
+                    ref={(input) => this.input = input}
+                  source={{ uri: 'http://gbr.thehoststudio.in/gbr/period_tracker.php' }}
+             //       onLoadEnd={() => myWebView.postMessage("test") }
+             />
+         );
+     }
 }
 
 export default Periodtracker;
